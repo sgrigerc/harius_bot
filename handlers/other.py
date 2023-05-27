@@ -4,7 +4,7 @@ import asyncio
 
 
 async def echo_send(message: types.Message):
-   await message.reply('Цвета можно подбирать в диапазоне от 0 до 255, blur нечетные цифры(1, 3, 5, 7, 9) чем меньше, тем больше точность')
+   await message.answer('Цвета можно подбирать в диапазоне от 0 до 255, blur нечетные цифры(1, 3, 5, 7, 9) чем меньше, тем больше точность')
 
 async def examples_of_color(message: types.Message):
    responses = ["12 235 230 5",

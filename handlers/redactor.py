@@ -15,17 +15,6 @@ from aiogram.types import Message, ContentTypes
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from keyboards import kb_client
 
-user_dict = {}
-
-class User:
-    def __init__(self, name):
-        self.name = name
-        self.accumulation_rub = 0
-        self.income_rub = 0
-        self.expense_rub = 0
-        self.profit_rub = 0
-        self.memory_sum = 0
-        self.memory_sum_old = 0
 
 # Определяем состояния
 class PhotoStates(StatesGroup):
@@ -38,7 +27,7 @@ async def cm_start(message: types.Message):
    ID = message.from_user.id
    chat_id = message.chat.id
    await PhotoStates.WAITING_FOR_PHOTO.set()
-   await message.reply("Загрузите фото для обработки!", reply_markup=kb_client)                         
+   await message.reply("Загрузите фото для обработки!")                         
    print('принятие фото')
 
 
