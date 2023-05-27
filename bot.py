@@ -12,7 +12,7 @@ from handlers import  redactor, base, other
 
 base.register_handlers_base(dp)
 redactor.register_handlers_redactor(dp)
-# other.register_handlers_other(dp)   
+other.register_handlers_other(dp)   
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+    executor.start_polling(dp, skip_updates=True, on_startup=on_startup, concurrency=10)
