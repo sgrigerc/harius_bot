@@ -1,5 +1,4 @@
 import io
-import os
 import numpy as np
 import cv2
 from typing import Text
@@ -69,7 +68,7 @@ async def apply_photo_filter(message: Message, state: FSMContext):
          try:
             r, g, b, blur = map(int, message.text.split())
          except ValueError:
-            pass
+            await message.answer('Вы ввели неправильно, применим значения по умолчанию')
          
          # Получаем информацию о файле по его file_id
          photo = data['photo']
@@ -82,12 +81,10 @@ async def apply_photo_filter(message: Message, state: FSMContext):
          # Скачиваем фото
          photo_buffer = io.BytesIO()
          await bot.download_file_by_id(file_id, photo_buffer)
-
          
          # Декодируем фото с помощью OpenCV
          img = cv2.imdecode(np.frombuffer(photo_buffer.getvalue(), dtype=np.uint8), cv2.IMREAD_COLOR)
          new_img = np.zeros(img.shape, dtype='uint8')
-   
    
          # Уменьшение размера фото
          img = cv2.imdecode(np.frombuffer(photo_buffer.getvalue(), dtype=np.uint8), cv2.IMREAD_COLOR)
@@ -114,7 +111,6 @@ async def apply_photo_filter(message: Message, state: FSMContext):
 # Регистрируем хендлеры
 def register_handlers_redactor(dp: Dispatcher):
    dp.register_message_handler(cancel_handler, state="*", commands="отмена")
-   dp.register_message_handler(cancel_handler, Text(equals="отмена", ignore_case=True), state="*")
    dp.register_message_handler(cm_start, commands=['editor'], state=None)
    dp.register_message_handler(load_photo, content_types=ContentTypes.PHOTO, state='*')
    dp.register_message_handler(apply_photo_filter,lambda message: not message.text.isdigit(), content_types=types.ContentType.TEXT, state=PhotoStates.PROCESSING_PHOTO)     

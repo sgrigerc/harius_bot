@@ -3,7 +3,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemo
 
 b0 = KeyboardButton('/отмена')
 b1 = KeyboardButton('/editor')
-b2 = KeyboardButton('/Инструкция')
+b2 = KeyboardButton('/instruction')
 b3 = KeyboardButton('/Примеры')
 
 kb_client = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
