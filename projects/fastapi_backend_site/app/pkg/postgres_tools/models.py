@@ -5,7 +5,8 @@ import tools as _tools
 
 class Contact(_tools.Base):
 
-   __tablename = "contacts"
+   __tablename__ = "contacts"
+   
    id = _sql.Column(_sql.Integer, primary_key=True, index=True)
    first_name = _sql.Column(_sql.String, index=True)
    lust_name = _sql.Column(_sql.String, index=True)

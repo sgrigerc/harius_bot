@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db_auth:
+    container_name: fastapi_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=32794
+      - POSTGRES_USER=harcy
+    image: postgres:15.3-alpine
